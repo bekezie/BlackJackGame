@@ -1,6 +1,6 @@
 package Game;
 
-public class Card implements Comparable{
+public class Card implements Comparable<Card>{
     private String suit;
     private String name;
 
@@ -166,7 +166,7 @@ public class Card implements Comparable{
         return -1;
     }
     @Override
-    public int compareTo(Object otherObject){
+    public int compareTo(Card otherObject){
 
         Card otherCard = (Card) otherObject;
         int card1 = IntCheck(getName());
