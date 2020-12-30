@@ -8,7 +8,12 @@ public class Hand extends Deck{
 
     public Hand()
     {
-        hand = null;
+        Deck d = new Deck();
+        AddCard(d.RemoveCard());
+        AddCard(d.RemoveCard());
+        AddCard(d.RemoveCard());
+        AddCard(d.RemoveCard());
+        AddCard(d.RemoveCard());
     }
     public Hand(Card aCard)
     {
