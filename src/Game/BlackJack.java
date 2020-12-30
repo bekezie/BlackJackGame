@@ -1,22 +1,20 @@
 package Game;
-
-import java.util.*;
-
+import java.util.Scanner;
 public class BlackJack {
     public static void main(String[] args) {
         Scanner keyboard = new Scanner(System.in);
         String input;
         Deck d = new Deck();
 
-
-
         while (true)
         {
+
             d.ShuffleDeck();
             Hand dealer = new Hand(d.RemoveCard());
             Hand player = new Hand(d.RemoveCard());
             dealer.AddCard(d.RemoveCard());
             player.AddCard(d.RemoveCard());
+
 
             while (true) {
                 System.out.println(player + "Hand value: " + getHandValue(player));
@@ -31,6 +29,19 @@ public class BlackJack {
                         break;
                     }
                     continue;
+                }
+
+                while (getHandValue(dealer) < 17)
+                {
+                    dealer.AddCard(d.RemoveCard());
+
+
+                }
+
+                if(getHandValue(dealer) > 21)
+                {
+                    System.out.println("You won!");
+                    break;
                 }
 
                 else if(getHandValue(player) >= getHandValue(dealer))
@@ -49,13 +60,13 @@ public class BlackJack {
             System.out.println(" Dealer : \n" + dealer + "Hand value: " + getHandValue(dealer));
             System.out.println(" Player : \n" + player  + "Hand value: " + getHandValue(player));
 
-            //Used so that if deck is empty you can add the discarded.
-            //cards back into the deck and reshuffle th deck again.
+            //used so that if deck is empty you add the discarded array of cards back to deck
+            // and reshuffle the deck again.
             dealer.Fold(d);
             player.Fold(d);
 
-
             System.out.println("Do you want to play again?");
+            System.out.println("Enter: Yes or No");
             input = keyboard.nextLine();
             if(input.equalsIgnoreCase("No"))
             {
@@ -100,4 +111,5 @@ public class BlackJack {
 
 
     }
+
 }
